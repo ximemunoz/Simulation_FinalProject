@@ -1,0 +1,68 @@
+{
+        "Artistas":{ 
+            "2021": {
+                "Band": "List_topBand_21",
+                "Share": "List_shareBand_21",
+                "Collected": "Collected_21"
+            },
+            "2022": {
+                "Band": "List_topBand_22",
+                "Share": "List_shareBand_22",
+                "Collected": "Collected_22"
+            },
+            "2023": {
+                "Band": "List_topBand_23",
+                "Share": "List_shareBand_23",
+                "Collected": "Collected_23"
+            }
+        },
+        "Growth":{ 
+            "2021": {
+                "asistentes" : "asistentes_21",
+                "porcentajeGrowth" : "porcentajeAlcance_21",
+                "ingreso" : "ingresoTotal_21",
+                "tiketPrice" : "price_21"
+            },
+            "2022": {
+                "asistentes" : "asistentes_22",
+                "porcentajeGrowth" : "porcentajeAlcance_22",
+                "ingreso" : "ingresoTotal_22",
+                "tiketPrice" : "price_22"
+            },
+            "2023": {
+                "asistentes" : "asistentes_23",
+                "porcentajeGrowth" : "porcentajeAlcance_23",
+                "ingreso" : "ingresoTotal_23",
+                "tiketPrice" : "price_23"
+            }
+        },
+        "Data":{
+            "2023":{
+                "bands": "List_Band_23", 
+                "nivelActual": "List_bandLevel_23",
+                "nivelNew": "List_bandLevel_23",
+                "followActual": "List_bandFollow_23",
+                "followNew": "List_bandFollow_23",
+                "Growth": "List_growth_23",
+                "URL": "url",
+                "img": "img"
+            }
+        },
+        "Level":{
+            "2021":{
+                "Level1": "1_2021",
+                "Level2": "1_2021",
+                "Level3": "1_2021"
+            },
+            "2022":{
+                "Level1": "1_2022",
+                "Level2": "1_2022",
+                "Level3": "1_2022"
+            },
+            "2023":{
+                "Level1": "1_2023",
+                "Level2": "1_2023",
+                "Level3": "1_2023"
+            }
+        }
+    }
