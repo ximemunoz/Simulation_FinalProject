@@ -25,16 +25,9 @@ function App() {
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/team" element={<Team />} />
-              {/*<Route path="/contacts" element={<Contacts />} />*/}
-              {/*<Route path="/invoices" element={<Invoices />} /> */}
-              {/*<Route path="/form" element={<Form />} />*/}
-              
               <Route path="/bar2021" element={<Bar2021 />} />
               <Route path="/bar2022" element={<Bar2022 />} />
               <Route path="/bar" element={<Bar />} />
-              
-              {/*<Route path="/faq" element={<FAQ />} />*/}
-              {/*<Route path="/calendar" element={<Calendar />} />*/}
               
             </Routes>
           </main>
