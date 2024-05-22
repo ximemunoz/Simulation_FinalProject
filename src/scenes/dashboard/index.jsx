@@ -1,25 +1,20 @@
 import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
-import { mockTransactions } from "../../data/mockData";
-import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
-import EmailIcon from "@mui/icons-material/Email";
-import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import TrafficIcon from "@mui/icons-material/Traffic";
 import Header from "../../components/Header";
 import LineChart from "../../components/LineChart";
-import GeographyChart from "../../components/GeographyChart";
+import BarChart2021 from "../../components/BarChart2021";
+import BarChart2022 from "../../components/BarChart2022";
 import BarChart from "../../components/BarChart";
-import StatBox from "../../components/StatBox";
-import ProgressCircle from "../../components/ProgressCircle";
-import Data from "../../data/vista del json.json";
+import Data from"../../data/DataOutput.json";
 
 const Dashboard = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const years = Object.keys(Data.GraphGrowth);
 
   return (
     <Box m="20px">
+      
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
@@ -38,9 +33,9 @@ const Dashboard = () => {
       >
         
 
-        {/* ROW 2 */}
+        {/* ROW 1 */}
         <Box
-          gridColumn="span 12"
+          gridColumn="span 5"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
         >
@@ -52,13 +47,13 @@ const Dashboard = () => {
             alignItems="center"
           >
             <Box>
-              <Typography
-              variant="h5"
-              fontWeight="600"
-              sx={{ padding: "30px 30px 0 30px" }}
-               >
-               Sales Quantity
-              </Typography>
+            <Typography
+                  variant="h5"
+                  fontWeight="600"
+                  color={colors.grey[100]}
+                >
+                  Artist Level Distribution:
+                </Typography>
               
             </Box>
           </Box>
@@ -67,7 +62,7 @@ const Dashboard = () => {
           </Box>
         </Box>
         <Box
-          gridColumn="span 6"
+          gridColumn="span 7"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
           overflow="auto"
@@ -84,9 +79,9 @@ const Dashboard = () => {
               Festival Growth
             </Typography>
           </Box>
-          {mockTransactions.map((transaction, i) => (
+          {years.map((year, i) => (
             <Box
-              key={`${transaction.txId}-${i}`}
+              key={`${year}-${i}`}
               display="flex"
               justifyContent="space-between"
               alignItems="center"
@@ -94,7 +89,7 @@ const Dashboard = () => {
               p="15px"
             >
               {/* AÑO BOX*/}
-              <Box color={colors.grey[100]}>{transaction.date}</Box>
+              <Box color={colors.grey[100]}>{year}</Box>
               {/* ASISTENTES BOX*/}
               <Box>
                 <Typography
@@ -105,8 +100,7 @@ const Dashboard = () => {
                   Attendants
                 </Typography>
                 <Typography color={colors.grey[100]}>
-                  {/*var.#asistentes*/}
-                  {transaction.user}
+                  {Data.GraphGrowth[year].asistentes}
                 </Typography>
               </Box>
 
@@ -120,8 +114,7 @@ const Dashboard = () => {
                   Ticket Price:
                 </Typography>
                 <Typography color={colors.grey[100]}>
-                  {/*var.precioTicket*/}
-                  {transaction.user}
+                  ${Data.GraphGrowth[year].tiketPrice}
                 </Typography>
               </Box>
 
@@ -135,8 +128,7 @@ const Dashboard = () => {
                   Total Revenue:
                 </Typography>
                 <Typography color={colors.grey[100]}>
-                  {/*var.ingresoTotal*/}
-                  {transaction.user}
+                  ${Data.GraphGrowth[year].ingreso} MDP
                 </Typography>
               </Box>
               
@@ -146,18 +138,15 @@ const Dashboard = () => {
                 p="5px 10px"
                 borderRadius="4px"
               >
-                {/*var.%Crecimiento*/}
-                {transaction.cost}%
+                {parseFloat(Data.GraphGrowth[year].porcentajeGrowth.toFixed(2))}%
               </Box>
               
             </Box>
           ))}
         </Box>
-
-        {/* ROW 3 */}
         <Box
-          gridColumn="span 6"
-          gridRow="span 2"
+          gridColumn="span 12"
+          gridRow="span 3"
           backgroundColor={colors.primary[400]}
         >
          
@@ -167,7 +156,7 @@ const Dashboard = () => {
                 color={colors.grey[100]}
                 sx={{ padding: "30px 30px 0 30px" }}
               >
-                Revenue Generated
+                Total Revenue 2021:
               </Typography>
               <Typography
                 variant="h3"
@@ -175,15 +164,75 @@ const Dashboard = () => {
                 color={colors.greenAccent[500]}
                 sx={{ padding: "0px 0px 0 30px" }}
               >
-                $59,342.32
+                ${Data.GraphGrowth[2021].ingreso} MDP
               </Typography>
           
-          <Box height="250px" mt="-20px">
+          <Box height="300px" mt="-20px">
+            <BarChart2021 isDashboard={true} />
+          </Box>
+        </Box>
+        <Box
+          gridColumn="span 12"
+          gridRow="span 3"
+          backgroundColor={colors.primary[400]}
+        >
+         
+          <Typography
+                variant="h5"
+                fontWeight="600"
+                color={colors.grey[100]}
+                sx={{ padding: "30px 30px 0 30px" }}
+              >
+                Total Revenue 2022:
+              </Typography>
+              <Typography
+                variant="h3"
+                fontWeight="bold"
+                color={colors.greenAccent[500]}
+                sx={{ padding: "0px 0px 0 30px" }}
+              >
+                ${Data.GraphGrowth[2022].ingreso} MDP
+              </Typography>
+          
+          <Box height="300px" mt="-20px">
+            <BarChart2022 isDashboard={true} />
+          </Box>
+        </Box>
+        <Box
+          gridColumn="span 12"
+          gridRow="span 3"
+          backgroundColor={colors.primary[400]}
+        >
+         
+          <Typography
+                variant="h5"
+                fontWeight="600"
+                color={colors.grey[100]}
+                sx={{ padding: "30px 30px 0 30px" }}
+              >
+                Total Revenue 2023:
+              </Typography>
+              <Typography
+                variant="h3"
+                fontWeight="bold"
+                color={colors.greenAccent[500]}
+                sx={{ padding: "0px 0px 0 30px" }}
+              >
+                ${Data.GraphGrowth[2023].ingreso} MDP
+              </Typography>
+          
+          <Box height="300px" mt="-20px">
             <BarChart isDashboard={true} />
           </Box>
         </Box>
         
+        
+
+        {/* ROW 3 */}
+        
+        
       </Box>
+      
       <Box>_</Box>
     </Box>
     

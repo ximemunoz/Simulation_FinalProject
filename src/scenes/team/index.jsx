@@ -1,76 +1,64 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
-import { mockDataTeam } from "../../data/mockData";
 import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
 import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
 import Header from "../../components/Header";
+import Data from "../../data/DataOutput.json";
 
 const Team = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  
   const columns = [
-    { field: "id", headerName: "ID" },
     {
-      field: "name",
-      headerName: "Name",
+      field: "Image",
+      headerName: "Image",
       flex: 1,
-      cellClassName: "name-column--cell",
+      renderCell: (params) => (
+        <img src={params.value} alt={params.row.Name} width="50" style={{ cursor: "pointer", borderRadius: "100%" }}/>
+      )
+    },
+    { field: "Name", headerName: "Name", flex: 1, cellClassName: "name-column--cell" },
+    { field: "Followers", headerName: "Followers", type: "number", width: 150 },
+    { field: "followNew", headerName: "New Followers", type: "number", width: 150 },
+    { field: "Popularity", headerName: "Popularity", type: "number", width: 120 },
+    { field: "Level", headerName: "Level", type: "number", width: 100 },
+    { field: "nivelNew", headerName: "New Level", type: "number", width: 100 },
+    { field: "Growth", headerName: "Growth", type: "number", width: 100 },
+    { 
+      field: "Genres", 
+      headerName: "Genres", 
+      flex: 1, 
+      renderCell: (params) => (
+        <Typography>
+          {params.value.join(", ")}
+        </Typography>
+      )
     },
     {
-      field: "age",
-      headerName: "Age",
-      type: "number",
-      headerAlign: "left",
-      align: "left",
-    },
-    {
-      field: "phone",
-      headerName: "Phone Number",
+      field: "Url",
+      headerName: "URL",
       flex: 1,
+      renderCell: (params) => (
+        <a href={params.value} target="_blank" rel="noopener noreferrer">
+          {params.value}
+        </a>
+      )
     },
-    {
-      field: "email",
-      headerName: "Email",
-      flex: 1,
-    },
-    {
-      field: "accessLevel",
-      headerName: "Access Level",
-      flex: 1,
-      renderCell: ({ row: { access } }) => {
-        return (
-          <Box
-            width="60%"
-            m="0 auto"
-            p="5px"
-            display="flex"
-            justifyContent="center"
-            backgroundColor={
-              access === "admin"
-                ? colors.greenAccent[600]
-                : access === "manager"
-                ? colors.greenAccent[700]
-                : colors.greenAccent[700]
-            }
-            borderRadius="4px"
-          >
-            {access === "admin" && <AdminPanelSettingsOutlinedIcon />}
-            {access === "manager" && <SecurityOutlinedIcon />}
-            {access === "user" && <LockOpenOutlinedIcon />}
-            <Typography color={colors.grey[100]} sx={{ ml: "5px" }}>
-              {access}
-            </Typography>
-          </Box>
-        );
-      },
-    },
+    
   ];
+
+  // Extraer los datos de las bandas para el año 2023
+  const rows = Data.GraphData["2023"].bands.map((band, index) => ({
+    id: index,
+    ...band,
+  }));
 
   return (
     <Box m="20px">
-      <Header title="TEAM" subtitle="Managing the Team Members" />
+      <Header title="ARTISTS" subtitle="Managing the Artists" />
       <Box
         m="40px 0 0 0"
         height="75vh"
@@ -100,7 +88,7 @@ const Team = () => {
           },
         }}
       >
-        <DataGrid checkboxSelection rows={mockDataTeam} columns={columns} />
+        <DataGrid checkboxSelection rows={rows} columns={columns} />
       </Box>
     </Box>
   );
