@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/Simulation_FinalProject/static/css/main.07a6e487.css",
+    "main.js": "/Simulation_FinalProject/static/js/main.897fd342.js",
+    "static/media/user.png": "/Simulation_FinalProject/static/media/user.b47c0576b3caade13799.png",
+    "index.html": "/Simulation_FinalProject/index.html",
+    "main.07a6e487.css.map": "/Simulation_FinalProject/static/css/main.07a6e487.css.map",
+    "main.897fd342.js.map": "/Simulation_FinalProject/static/js/main.897fd342.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.07a6e487.css",
+    "static/js/main.897fd342.js"
+  ]
+}
